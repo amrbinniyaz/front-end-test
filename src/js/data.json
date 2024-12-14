@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "Slide 1",
+      "description": "Every great achievement begins with the decision to try. Success is not final, failure is not fatal: it is the courage to continue that counts. The journey of a thousand miles begins with a single step.",
+      "image": "https://images.unsplash.com/photo-1682686581030-7fa4ea2b96c3"
+    },
+    {
+      "id": 2,
+      "title": "Slide 2",
+      "description": "The future belongs to those who believe in the beauty of their dreams. Don't let small minds convince you that your dreams are too big.",
+      "image": "https://images.unsplash.com/photo-1682686580024-580519d4b2d2"
+    },
+    {
+      "id": 3,
+      "title": "",
+      "description": "Life is either a daring adventure or nothing at all. Security is mostly a superstition. It does not exist in nature.",
+      "image": "https://images.unsplash.com/photo-1682686580186-b55d2a91053c"
+    },
+    {
+      "id": 4,
+      "title": "Slide 3",
+      "description": "Do not go where the path may lead, go instead where there is no path and leave a trail. Be the change you wish to see in the world.",
+      "image": "https://images.unsplash.com/photo-1733173523386-3006dec1a835?q=80&w=3605&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": 5,
+      "title": "Slide 4",
+      "description": "Adventure is worthwhile in itself. The biggest adventure you can take is to live the life of your dreams.",
+      "image": "https://images.unsplash.com/photo-1682686578289-cf9c8c472c9b"
+    },
+    {
+      "id": 6,
+      "title": "",
+      "description": "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.",
+      "image": "https://images.unsplash.com/photo-1682686578731-5ebcaa65c377"
+    },
+    {
+      "id": 7,
+      "title": "slide 5",
+      "description": "Strength does not come from physical capacity. It comes from an indomitable will. The only limit to our realization of tomorrow will be our doubts of today.",
+      "image": "https://images.unsplash.com/photo-1580184480897-ad05a3443d44?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": 8,
+      "title": "Slide 6",
+      "description": "The world is a book and those who do not travel read only one page. Travel far enough, you meet yourself.",
+      "image": "https://images.unsplash.com/photo-1682686580950-960d1d513532"
+    },
+    {
+      "id": 9,
+      "title": "",
+      "description": "In the middle of difficulty lies opportunity. Success is not the key to happiness. Happiness is the key to success.",
+      "image": "https://images.unsplash.com/photo-1682686581312-506c3dac9d82"
+    },
+    {
+      "id": 10,
+      "title": "Slide 7",
+      "description": "All our dreams can come true if we have the courage to pursue them. The future depends on what you do today.",
+      "image": "https://plus.unsplash.com/premium_photo-1700500733511-b42dfae2897a?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
+  ]
+}
