@@ -1,0 +1,54 @@
+{
+    "items": [
+        {
+            "link": "https://example.com/item1",
+            "image": "https://picsum.photos/800/600?random=1",
+            "description": "Product1 Title"
+        },
+        {
+            "link": "https://example.com/item2",
+            "image": "https://picsum.photos/800/600?random=2",
+            "description": "Product2 Title"
+        },
+        {
+            "link": "https://example.com/item3",
+            "image": "https://picsum.photos/800/600?random=3",
+            "description": "Product3 Title"
+        },
+        {
+            "link": "https://example.com/item4",
+            "image": "https://picsum.photos/800/600?random=4",
+            "description": "Product4 Title"
+        },
+        {
+            "link": "https://example.com/item5",
+            "image": "https://picsum.photos/800/600?random=5",
+            "description": "Product5 Title"
+        },
+        {
+            "link": "https://example.com/item6",
+            "image": "https://picsum.photos/800/600?random=6",
+            "description": "Product6 Title"
+        },
+        {
+            "link": "https://example.com/item7",
+            "image": "https://picsum.photos/800/600?random=7",
+            "description": "Product7 Title"
+        },
+        {
+            "link": "https://example.com/item8",
+            "image": "https://picsum.photos/800/600?random=8",
+            "description": "Product8 Title"
+        },
+        {
+            "link": "https://example.com/item9",
+            "image": "https://picsum.photos/800/600?random=9",
+            "description": "Product9 Title"
+        },
+        {
+            "link": "https://example.com/item10",
+            "image": "https://picsum.photos/800/600?random=10",
+            "description": "Product10 Title"
+        }
+    ]
+}

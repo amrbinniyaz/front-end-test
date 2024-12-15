@@ -122,11 +122,90 @@ async function createSlides() {
     }
 }
 
-// Add Swiper script after DOM is loaded
+// Initialize carousel list and GSAP animations
+async function initCarouselList() {
+    try {
+        const response = await fetch('https://dummyjson.com/products?limit=10');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        const carouselList = document.querySelector('.carousel-list');
+        if (!carouselList) {
+            return;
+        }
+
+        // Clear existing items
+        carouselList.innerHTML = '';
+        
+        // Transform and create carousel items from products
+        if (!data.products || !Array.isArray(data.products)) {
+            return;
+        }
+
+        data.products.forEach((product, index) => {
+            const carouselItem = document.createElement('div');
+            carouselItem.className = 'carousel-item';
+            carouselItem.innerHTML = `
+                <div class="item-image">
+                    <img src="${product.thumbnail}" alt="${product.title}">
+                </div>
+                <div class="item-content">
+                    <a href="#product-${product.id}" target="_blank">${product.title}</a>
+                </div>
+            `;
+            carouselList.appendChild(carouselItem);
+        });
+        
+        // Initialize GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Make left section sticky only on desktop
+        if (window.innerWidth > 768) {
+            gsap.to("#sticky_section", {
+                scrollTrigger: {
+                    trigger: ".sticky__left",
+                    start: "top top",
+                    endTrigger: ".items__col",
+                    end: "bottom bottom",
+                    pin: true,
+                    pinSpacing: true
+                }
+            });
+        }
+
+        // Animate carousel items on scroll
+        const items = document.querySelectorAll('.carousel-item');
+        items.forEach((item, index) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    scrub: false,
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                delay: index * 0.1
+            });
+        });
+        
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Initialize both sections when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     const swiperScript = document.createElement('script');
     swiperScript.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
-    swiperScript.onload = createSlides;
+    swiperScript.onload = () => {
+        createSlides();
+        initCarouselList();
+    };
     document.body.appendChild(swiperScript);
 });
 
