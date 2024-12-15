@@ -198,13 +198,124 @@ async function initCarouselList() {
     }
 }
 
-// Initialize both sections when DOM is loaded
+// Initialize product showcase section
+async function initProductShowcase() {
+    try {
+        const response = await fetch('https://dummyjson.com/products?limit=4');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        const menuContent = document.querySelector('.menu-content');
+        const showcaseContent = document.querySelector('.showcase-content');
+        
+        if (!menuContent || !showcaseContent) {
+            return;
+        }
+
+        // Create menu items
+        data.products.forEach((product, index) => {
+            const menuItem = document.createElement('div');
+            menuItem.className = `menu-item ${index === 0 ? 'active' : ''}`;
+            menuItem.innerHTML = `
+                <div class="item-number">${index + 1}/${data.products.length}</div>
+                <h2 class="item-title">${product.title}</h2>
+                <p class="item-description">${product.description}</p>
+            `;
+            menuContent.appendChild(menuItem);
+        });
+
+        // Create content items
+        data.products.forEach((product, index) => {
+            const contentItem = document.createElement('div');
+            contentItem.className = `content-item ${window.innerWidth <= 768 ? 'in-view' : ''}`;
+            contentItem.setAttribute('data-index', index);
+            contentItem.innerHTML = `
+                <div class="item-image">
+                    <h2 class="item-title">${product.title}</h2>
+                    <img src="${product.thumbnail}" alt="${product.title}" loading="lazy">
+                </div>
+            `;
+            showcaseContent.appendChild(contentItem);
+        });
+
+        // Initialize ScrollTrigger for the showcase section only on desktop
+        if (window.innerWidth > 768) {
+            // Create scroll triggers for content items
+            const contentItems = gsap.utils.toArray('.content-item');
+            contentItems.forEach((item, i) => {
+                ScrollTrigger.create({
+                    trigger: item,
+                    start: "top center",
+                    end: "bottom center",
+                    onEnter: () => updateActiveMenuItem(i),
+                    onEnterBack: () => updateActiveMenuItem(Math.max(0, i - 1)),
+                    toggleClass: {targets: item, className: "in-view"}
+                });
+            });
+        }
+
+        // Function to update active menu item with smooth transitions
+        function updateActiveMenuItem(index) {
+            // Skip animations on mobile
+            if (window.innerWidth <= 768) {
+                const menuItems = gsap.utils.toArray('.menu-item');
+                menuItems.forEach((item, i) => {
+                    if (i === index) {
+                        item.style.display = 'block';
+                        item.classList.add('active');
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.remove('active');
+                    }
+                });
+                return;
+            }
+
+            const menuItems = gsap.utils.toArray('.menu-item');
+            menuItems.forEach((item, i) => {
+                const timeline = gsap.timeline({
+                    defaults: { duration: 0.3, ease: "power2.inOut" }
+                });
+
+                if (i === index) {
+                    timeline
+                        .set(item, { display: "block" })
+                        .to(item, {
+                            opacity: 1,
+                            y: "-50%",
+                            onStart: () => item.classList.add('active')
+                        });
+                } else {
+                    timeline
+                        .to(item, {
+                            opacity: 0,
+                            onComplete: () => {
+                                item.classList.remove('active');
+                                gsap.set(item, { display: "none" });
+                            }
+                        });
+                }
+            });
+        }
+
+        // Initialize first item
+        updateActiveMenuItem(0);
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Initialize all sections when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     const swiperScript = document.createElement('script');
     swiperScript.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
     swiperScript.onload = () => {
         createSlides();
         initCarouselList();
+        initProductShowcase();
     };
     document.body.appendChild(swiperScript);
 });
